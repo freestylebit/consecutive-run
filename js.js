@@ -1,4 +1,4 @@
-var integerArray = [1,2], indices = [];
+var integerArray = [], indices = [];
 
 function addInteger(e) {
   integerValue = document.getElementById('numberInput').value;
