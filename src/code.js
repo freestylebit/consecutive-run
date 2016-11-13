@@ -44,7 +44,8 @@ class ConsecutiveRun extends React.Component {
     this.state = {
       integerArray: [],
       indices: [],
-      pending: ''
+      pending: '',
+      error: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -58,18 +59,26 @@ class ConsecutiveRun extends React.Component {
   }
 
   handleSubmit(event) {
-    let temp = this.state.integerArray;
-    temp.push(this.state.pending);
-    this.setState({
-      integerArray: temp,
-      pending: ''
-    });
+    let n = this.state.pending;
+    if (!isNaN(parseFloat(n)) && isFinite(n)) {
+      let temp = this.state.integerArray;
+      temp.push(this.state.pending);
+      this.setState({
+        integerArray: temp,
+        pending: '',
+        error: ''
+      });
+    }
+    else {
+      this.setState({
+        error: 'Not a number'
+      });
+    }
 
     event.preventDefault();
   }
 
   addInteger() {
-    console.log('asdf');
   }
 
   componentDidMount() {
@@ -81,12 +90,19 @@ class ConsecutiveRun extends React.Component {
     return (
       <div className="runs">
         <h1>Check for consecutive numbers</h1>
+        <p>{this.state.error}</p>
         <form onSubmit={this.handleSubmit}>
           Enter the integer one by one: <input type="text" id="numberInput" value={this.state.pending} onChange={this.handleChange} />
           <input type="submit" value="Submit" />
         </form>
         <div className="runs__tally">
-          <div className="runs__tally__confirmed">{this.state.integerArray}</div>
+          <div className="runs__tally__confirmed">
+            <ul>
+              {this.state.integerArray.map(function(v, i) {
+                return <li key={i}>{v}</li>;
+              })}
+            </ul>
+          </div>
           <div className="runs__tally__pending">{this.state.pending}</div>
         </div>
       </div>
