@@ -1,0 +1,5 @@
+# Artifacts generated from webpack.
+dist
+
+# Ignore dependencies provided by npm.
+node_modules

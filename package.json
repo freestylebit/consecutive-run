@@ -1,0 +1,31 @@
+{
+  "name": "consecutive-run",
+  "version": "1.0.0",
+  "description": "Calculator interface for determine three consecutive runs in a list of integers.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freestylebit/consecutive-run.git"
+  },
+  "keywords": [
+    "consecutive",
+    "runs"
+  ],
+  "author": "Peter Cho",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/freestylebit/consecutive-run/issues"
+  },
+  "homepage": "https://github.com/freestylebit/consecutive-run#readme",
+  "dependencies": {
+    "autoprefixer": "^6.5.3",
+    "babel-loader": "^6.2.7",
+    "path": "^0.12.7",
+    "postcss-loader": "^1.1.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "webpack": "^1.13.3"
+  }
+}
