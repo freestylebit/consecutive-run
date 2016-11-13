@@ -14,6 +14,7 @@ let config = {
     ],
 
     // Auto-detect all components in directory.
+    'html': './index.html',
     'code': './src/code.js',
   },
   output: {
@@ -47,11 +48,6 @@ let config = {
         test: /\.s?css$/,
         loaders: ['style', 'css', 'sass', 'postcss-loader']
       },
-      // Images: png, gif, jpg, jpeg
-      {
-        test: /\.(png|gif|jpe?g)$/,
-        loader: 'file?name=/img/[name].[ext]'
-      },
       // HTML: htm, html
       {
         test: /\.html?$/,
@@ -62,11 +58,11 @@ let config = {
   postcss: [ autoprefixer({ browsers: ['last 12 versions'] }) ],
   plugins: [
     // Use the production version of third party libraries.
-    new webpack.DefinePlugin({
-      'process.env':{
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
+    // new webpack.DefinePlugin({
+    //   'process.env':{
+    //     'NODE_ENV': JSON.stringify('production')
+    //   }
+    // }),
     // Minify assets.
     // new webpack.optimize.UglifyJsPlugin({
     //   mangle: true,

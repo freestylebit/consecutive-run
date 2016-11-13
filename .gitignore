@@ -1,5 +1,9 @@
 # Artifacts generated from webpack.
 dist
 
-# Ignore dependencies provided by npm.
+# Dependencies provided by npm.
 node_modules
+
+# Automatically-generated mac files.
+.DS_Store
+
