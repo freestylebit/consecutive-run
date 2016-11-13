@@ -1,4 +1,4 @@
-var integerArray = [1, 2, 3, 5, 10, 9, 8, 9, 10, 11, 7, 8, 7], indices = [];
+var integerArray = [1,2], indices = [];
 
 function addInteger(e) {
   integerValue = document.getElementById('numberInput').value;
@@ -22,8 +22,11 @@ function searchConsecutiveNumbers() {
     diff2 = integerArray[i + 1] - integerArray[i + 2];
     if ((diff1 == 1 || diff1 == -1) && diff1 === diff2) {
       indices.push(i);
+      document.getElementById("indicesArray").innerHTML += (indices.length == 1 ? "" : "," ) + i;
     }
   }
 
-  document.getElementById("indicesArray").innerHTML += (indices.length == 1 ? "" : "," ) + indices;
+  if (indices.length == 0) {
+    document.getElementById("indicesArray").innerHTML = 'No results found';
+  }
 };
