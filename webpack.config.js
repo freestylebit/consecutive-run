@@ -14,7 +14,7 @@ let config = {
     ],
 
     // Auto-detect all components in directory.
-    'html': './index.html',
+    'html': './src/index.html',
     'code': './src/code.js',
   },
   output: {
