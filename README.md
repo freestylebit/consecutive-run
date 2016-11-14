@@ -16,6 +16,9 @@ webpack
 
 Your compiled static artifacts will be compiled within the **dist/** directory. You can serve those files over a web server or interact with it locally (via the files:// protocol). For simplicity, I included a copy of the file assets in the **web/** directory (so it can be committed in the repo without the need to install node and webpack).
 
+## How to use
+When you load **index.html**, simply start typing numbers!  You will compile a list of values below on the fly.  Add three consecutive numbers in a row and the first value in the run will be emphasized.  You can also get a compiled list of indices below.
+
 ---
 
 ## Assignment
