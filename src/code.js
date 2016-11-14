@@ -1,42 +1,9 @@
-var integerArray = [1], indices = [];
-
-function addInteger(e) {
-  integerValue = document.getElementById('numberInput').value;
-  integerArray.push(integerValue);
-  document.getElementById('integerArray').innerHTML += (integerArray.length == 1 ? "" : "," ) + integerValue;
-  document.getElementById("numberInput").value = "";
-};
-
-var reset = function () {
-  document.getElementById("indicesArray").innerHTML = "";
-  document.getElementById('integerArray').innerHTML = "";
-  integerArray = [];
-  indices = [];
-};
-
-function searchConsecutiveNumbers() {
-  var diff1, diff2;
-
-  for(var i = 0; i < integerArray.length; i += 1) {
-    diff1 = integerArray[i] - integerArray[i + 1];
-    diff2 = integerArray[i + 1] - integerArray[i + 2];
-    if ((diff1 == 1 || diff1 == -1) && diff1 === diff2) {
-      indices.push(i);
-      document.getElementById("indicesArray").innerHTML += (indices.length == 1 ? "" : "," ) + i;
-    }
-  }
-
-  if (indices.length == 0) {
-    document.getElementById("indicesArray").innerHTML = 'No results found';
-  }
-};
-
-
-
+'use strict';
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+require('./styles.scss');
 
 class ConsecutiveRun extends React.Component {
   constructor(props) {
@@ -74,7 +41,8 @@ class ConsecutiveRun extends React.Component {
       }
       else {
         this.setState({
-          error: 'Not a number'
+          pending: '',
+          error: 'That\'s not a number!'
         });
       }
     }
@@ -123,33 +91,45 @@ class ConsecutiveRun extends React.Component {
       indices: indices
     });
 
-    console.log(this.state.indices);
-
     if (indices.length == 0) {
-      //document.getElementById("indicesArray").innerHTML = 'No results found';
+      this.setState({
+        indices: 'No results found'
+      });
     }
   };
 
   render() {
+    let indices = this.state.indices;
+    if (typeof indices === 'object') {
+      indices = indices.join(', ');
+    }
+
     return (
       <div className="runs">
         <h1>Check for consecutive numbers</h1>
-        <p>{this.state.error}</p>
+        
         <form onSubmit={this.handleSubmit}>
-          Enter the integer one by one: <input type="text" id="numberInput" value={this.state.pending} onChange={this.handleChange} />
+          Enter a number: <input type="text" id="numberInput" value={this.state.pending} onChange={this.handleChange} autoComplete="off" />
           <input type="submit" value="Submit" /> <button onClick={this.handleReset}>Reset</button>
         </form>
-        <div className="runs__tally">
-          <div className="runs__tally__confirmed">
-            <ul>
-              {this.state.integerArray.map(function(v, i) {
-                return <li key={i}>{v}</li>;
-              })}
-              <li>{this.state.pending}</li>
-            </ul>
-          </div>
-          <div className="runs__tally__results">{this.state.indices}</div>
+
+        <div className="runs__error">
+          <span>{this.state.error}</span>
         </div>
+
+        <div className="runs__tally">
+          <ul>
+            {this.state.integerArray.map((v, i) => {
+              let flag = '';
+              if (this.state.indices.indexOf(i) !== -1) {
+                flag = 'flag';
+              }
+              return <li key={i} className={flag}><span className="runs__tally__entry">{i}</span> <span className="runs__tally__value">{v}</span></li>;
+            })}
+            <li><span className="runs__tally__entry">V</span> <span className="runs__tally__value">{this.state.pending}</span></li>
+          </ul>
+        </div>
+        <div className="runs__indices"><strong>Aggregated list</strong>: {indices}</div>
       </div>
     );
   }
@@ -157,5 +137,5 @@ class ConsecutiveRun extends React.Component {
 
 ReactDOM.render(
   <ConsecutiveRun />,
-  document.getElementById('root')
+  document.getElementById('container')
 );

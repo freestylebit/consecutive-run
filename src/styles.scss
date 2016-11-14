@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+#container {
+  margin: 0 auto;
+  width: 90%;
+  text-align: center;
+  animation: fadein 2s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.runs {
+  form {
+    input[type="text"] {
+      padding: 0.5em 0;
+    }
+    input[type="submit"], button {
+      background-color: #6A6;
+      border: 0;
+      color: #FFF;
+      margin: 0 0.3em;
+      padding: 0.5em 1em;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 100%;
+    }
+  }
+
+  &__error {
+    background-color: #FCC;
+    margin: 1em;
+    
+    border-radius: 5px;
+    display: block;
+
+    span {
+      line-height: 2em;
+    }
+  }
+
+  &__tally {
+    ul {
+      list-style: none;
+
+      li {
+        font-size: 2em;
+        line-height: 1.6em;
+        padding: 0.5em;
+        float: left;
+
+        &.flag {
+          font-weight: bold;
+
+          span:first-child{
+            color: #393;
+          }
+          span:last-child{
+            color: #000;
+          }
+        }
+
+        span:first-child {
+          color: #DDD;
+          font-size: 70%;
+        }
+
+        span:last-child {
+          display: block;
+          font-weight: normal;
+          color: #BBB;
+        }
+      }
+
+      li:last-child {
+        span:first-child {
+          color: #F66;
+        }
+      }
+    }
+  }
+
+  &__indices {
+    color: #888;
+    clear: both;
+
+    strong {
+      color: #000;
+    }
+  }
+}
