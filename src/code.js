@@ -93,7 +93,7 @@ class ConsecutiveRun extends React.Component {
 
     if (indices.length == 0) {
       this.setState({
-        indices: 'No results found'
+        indices: 'No runs found'
       });
     }
   };
